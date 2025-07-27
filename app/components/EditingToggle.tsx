@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-export const EditingToggle: React.FC<{
+const EditingToggle: React.FC<{
 	setEditingMode: (value: boolean) => void;
 }> = ({ setEditingMode }) => {
 	const [isEnabled, setIsEnabled] = React.useState(false);
@@ -25,3 +25,5 @@ export const EditingToggle: React.FC<{
 		/>
 	);
 };
+
+export default EditingToggle;

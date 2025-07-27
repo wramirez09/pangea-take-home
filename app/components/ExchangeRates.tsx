@@ -2,7 +2,7 @@ import { startCase } from "lodash";
 import * as React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { ExchangeRate } from "../views/ExchangeRates/types";
-import { EditableTextInput } from "./EditableTextInput";
+import EditableTextInput from "./EditableTextInput";
 
 const styles = StyleSheet.create({
 	container: {
@@ -55,7 +55,7 @@ const DataRenderer: React.FC<{
 	);
 };
 
-export const ExchangeRates: React.FC<{
+const ExchangeRates: React.FC<{
 	exchangeRateData: ExchangeRate[];
 }> = ({ exchangeRateData }) => {
 	return (
@@ -64,3 +64,5 @@ export const ExchangeRates: React.FC<{
 		</>
 	);
 };
+
+export default ExchangeRates;

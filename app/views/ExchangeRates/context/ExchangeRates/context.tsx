@@ -9,7 +9,7 @@ export const ExchangeRateContext = React.createContext<{
 	setExchangeRates: () => {},
 });
 
-export const useExchangeRates = () => {
+const useExchangeRates = () => {
 	const context = React.useContext(ExchangeRateContext);
 	if (typeof context === "undefined") {
 		throw new Error(
@@ -18,3 +18,5 @@ export const useExchangeRates = () => {
 	}
 	return context;
 };
+
+export default useExchangeRates;

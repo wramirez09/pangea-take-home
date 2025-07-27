@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
-import { EditingToggle } from "./EditingToggle";
+import EditingToggle from "./EditingToggle";
 
 const styles = StyleSheet.create({
 	textInput: {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-export const EditableTextInput: React.FC<{ value: string }> = ({ value }) => {
+const EditableTextInput: React.FC<{ value: string }> = ({ value }) => {
 	const [isEditingMode, setIsEditingMode] = React.useState(false);
 
 	const handleEditingToggle = React.useCallback(() => {
@@ -41,3 +41,5 @@ export const EditableTextInput: React.FC<{ value: string }> = ({ value }) => {
 		</View>
 	);
 };
+
+export default EditableTextInput;

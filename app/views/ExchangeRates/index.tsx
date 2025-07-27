@@ -1,7 +1,7 @@
-import { ExchangeRates } from "@/app/components/ExchangeRates";
+import ExchangeRates from "@/app/components/ExchangeRates";
 import * as React from "react";
 import { SafeAreaView, ScrollView, Text } from "react-native";
-import { useExchangeRates } from "./context/ExchangeRates/context";
+import useExchangeRates from "./context/ExchangeRates/context";
 import { ExchangeRateResponse } from "./types";
 
 const endPoint =

@@ -1,5 +1,5 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 const styles = StyleSheet.create({
 	container: {
@@ -18,9 +18,10 @@ const HomeScreen: React.FC = () => {
 	return (
 		<View style={styles.container}>
 			<Text>Welcome to the Mexican Exhange Rates View</Text>
-			<Text onPress={() => navigation.navigate("ExchangeRates")}>
-				Go to Exchange Rates
-			</Text>
+			<Button
+				onPress={() => navigation.navigate("ExchangeRates")}
+				title="Go to Exchange Rates"
+			/>
 		</View>
 	);
 };

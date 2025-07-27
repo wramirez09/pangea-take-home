@@ -2,7 +2,7 @@ import * as React from "react";
 import { ExchangeRate } from "../../types";
 import { ExchangeRateContext } from "./context";
 
-export const ExchangeRatesProvider: React.FC<React.PropsWithChildren> = ({
+const ExchangeRatesProvider: React.FC<React.PropsWithChildren> = ({
 	children,
 }) => {
 	const [exchangeRates, setExchangeRates] = React.useState<
@@ -15,3 +15,5 @@ export const ExchangeRatesProvider: React.FC<React.PropsWithChildren> = ({
 		</ExchangeRateContext.Provider>
 	);
 };
+
+export default ExchangeRatesProvider;
