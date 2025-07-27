@@ -3,6 +3,7 @@ import * as React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { ExchangeRate } from "../views/ExchangeRates/types";
 import EditableTextInput from "./EditableTextInput";
+import TEXT_CONSTANTS from "../utils/consts";
 
 const styles = StyleSheet.create({
 	container: {
@@ -30,13 +31,16 @@ const DataRenderer: React.FC<{
 }> = ({ data }) => {
 	const items = [];
 	for (let i = 0; i < data.length; i++) {
+		const id = data[i].Id;
 		for (const [key, value] of Object.entries(data[i])) {
-			const valueInput =
-				key === "Rate" ? (
-					<EditableTextInput value={value} />
+			let valueInput;
+			valueInput =
+				key === TEXT_CONSTANTS.rate ? (
+					<EditableTextInput value={value} id={id} />
 				) : (
 					<Text style={styles.textInput}>{value}</Text>
 				);
+
 			items.push(
 				<View style={styles.container} key={`${key}-${value}`}>
 					<Text style={styles.text}>{startCase(key)}:</Text>

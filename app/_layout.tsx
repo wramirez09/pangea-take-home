@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import HomeScreen from "./app";
 import ExchageRates from "./views/ExchangeRates";
+import ExchangeRatesProvider from "./context/ExchangeRates/ExchangeRatesProvider";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,5 +17,9 @@ function RootStack() {
 }
 
 export default function RootLayout() {
-	return <RootStack />;
+	return (
+		<ExchangeRatesProvider>
+			<RootStack />
+		</ExchangeRatesProvider>
+	);
 }

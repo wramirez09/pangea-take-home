@@ -1,4 +1,4 @@
-export type ExchangeRateResponse = {
+type ExchangeRateResponse = {
 	ExchangeRates: ExchangeRate[];
 	Fees: Fees;
 	ElektraSurchargeFees: ElektraSurchargeFees;
@@ -51,3 +51,5 @@ export type Ach2 = {
 	Threshold: number;
 	Fee: number;
 };
+
+export default ExchangeRateResponse;

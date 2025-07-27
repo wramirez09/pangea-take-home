@@ -1,8 +1,10 @@
 import ExchangeRates from "@/app/components/ExchangeRates";
 import * as React from "react";
 import { SafeAreaView, ScrollView, Text } from "react-native";
-import useExchangeRates from "./context/ExchangeRates/context";
-import { ExchangeRateResponse } from "./types";
+
+import ExchangeRateResponse from "./types";
+import TEXT_CONSTANTS from "@/app/utils/consts";
+import useExchangeRates from "@/app/context/ExchangeRates/context";
 
 const endPoint =
 	process.env.MXN_XCHANGE_RATE_URL ??
@@ -42,6 +44,12 @@ const ExchageRates: React.FC = () => {
 		fetchExchangeRates();
 	}, [setExchangeRates]);
 
+	const mxnData = React.useMemo(() => {
+		return exchangeRatesData?.ExchangeRates.filter((arr) => {
+			return arr.DestinationCurrency === TEXT_CONSTANTS.mxn;
+		});
+	}, [exchangeRatesData]);
+
 	if (loading) {
 		return <Text>Loading...</Text>;
 	}
@@ -49,14 +57,14 @@ const ExchageRates: React.FC = () => {
 		return <Text>{error}</Text>;
 	}
 	return (
-		<ScrollView>
-			<SafeAreaView>
-				<Text>Exchange Rates</Text>
-				<ExchangeRates
-					exchangeRateData={exchangeRatesData?.ExchangeRates ?? []}
-				/>
-			</SafeAreaView>
-		</ScrollView>
+		mxnData && (
+			<ScrollView>
+				<SafeAreaView>
+					<Text>Exchange Rates</Text>
+					<ExchangeRates exchangeRateData={mxnData} />
+				</SafeAreaView>
+			</ScrollView>
+		)
 	);
 };
 

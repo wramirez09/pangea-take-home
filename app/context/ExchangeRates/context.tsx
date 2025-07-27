@@ -1,5 +1,5 @@
+import { ExchangeRate } from "@/app/views/ExchangeRates/types";
 import * as React from "react";
-import { ExchangeRate } from "../../types";
 
 export const ExchangeRateContext = React.createContext<{
 	exchangeRates: ExchangeRate[] | null;
