@@ -1,4 +1,4 @@
-import { isEmpty, startCase } from "lodash";
+import { startCase } from "lodash";
 import * as React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { ExchangeRate } from "../views/ExchangeRates/types";
@@ -58,16 +58,6 @@ const DataRenderer: React.FC<{
 export const ExchangeRates: React.FC<{
 	exchangeRateData: ExchangeRate[];
 }> = ({ exchangeRateData }) => {
-	const [data, setData] = React.useState<ExchangeRate[] | undefined>(
-		exchangeRateData
-	);
-
-	React.useEffect(() => {
-		if (typeof exchangeRateData !== "undefined" && !isEmpty(exchangeRateData)) {
-			setData(exchangeRateData);
-		}
-	}, [exchangeRateData]);
-
 	return (
 		<>
 			<DataRenderer data={exchangeRateData} />

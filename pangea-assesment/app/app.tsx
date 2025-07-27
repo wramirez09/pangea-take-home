@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, View } from "react-native";
 
 const styles = StyleSheet.create({
@@ -9,8 +9,12 @@ const styles = StyleSheet.create({
 	},
 });
 
+type RootStackParamList = {
+	ExchangeRates: undefined;
+}; // work around for the missing type definition
+
 const HomeScreen: React.FC = () => {
-	const navigation = useNavigation();
+	const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 	return (
 		<View style={styles.container}>
 			<Text>Welcome to the Mexican Exhange Rates View</Text>

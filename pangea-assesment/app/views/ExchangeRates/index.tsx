@@ -52,37 +52,9 @@ const ExchageRates: React.FC = () => {
 		<ScrollView>
 			<SafeAreaView>
 				<Text>Exchange Rates</Text>
-
 				<ExchangeRates
 					exchangeRateData={exchangeRatesData?.ExchangeRates ?? []}
 				/>
-				{/* <Text>Fees</Text>
-			{exchangeRatesData?.Fees.Card.map((fee, index) => (
-				<>
-					<Text key={`${fee.Threshold}-${fee.Fee}-card-${index}`}>
-						Card Fee: {fee.Fee} at Threshold: {fee.Threshold}
-					</Text>
-					<Text key={`${fee.Threshold}-${fee.Fee}-ach-${index}`}>
-						Ach Fee: {fee.Fee} at Threshold: {fee.Threshold}
-					</Text>
-				</>
-			))}
-			<Text>Elektra Surcharge Fees</Text>
-			{exchangeRatesData?.ElektraSurchargeFees.Card.map((fee, index) => (
-				<>
-					<Text key={`${fee.Threshold}-${fee.Fee}-elektra-card-${index}`}>
-						Elektra Card Fee: {fee.Fee} at Threshold: {fee.Threshold}
-					</Text>
-					<Text key={`${fee.Threshold}-${fee.Fee}-elektra-ach-${index}`}>
-						Elektra Ach Fee: {fee.Fee} at Threshold: {fee.Threshold}
-					</Text>
-				</>
-			))}
-			{exchangeRatesData?.ElektraSurchargeFees.CashCard.map((fee, index) => (
-				<Text key={`${fee.Threshold}-${fee.Fee}-elektra-cash-card-${index}`}>
-					Elektra Cash Card Fee: {fee.Fee} at Threshold: {fee.Threshold}
-				</Text>
-			))} */}
 			</SafeAreaView>
 		</ScrollView>
 	);
