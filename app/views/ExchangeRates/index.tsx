@@ -1,4 +1,4 @@
-import { ExchangeRates } from "@/app/components";
+import { ExchangeRates } from "@/app/components/ExchangeRates";
 import * as React from "react";
 import { SafeAreaView, ScrollView, Text } from "react-native";
 import { useExchangeRates } from "./context/ExchangeRates/context";
