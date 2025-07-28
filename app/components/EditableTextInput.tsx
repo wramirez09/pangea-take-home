@@ -9,7 +9,7 @@ import {
 import EditingToggle from "./EditingToggle";
 import { useDebounce } from "@uidotdev/usehooks";
 import useExchangeRates from "../context/ExchangeRates/context";
-import { ExchangeRate } from "../views/ExchangeRates/types";
+
 const styles = StyleSheet.create({
 	textInput: {
 		fontSize: 16,
@@ -43,21 +43,24 @@ const EditableTextInput: React.FC<{ value: string; id: string }> = ({
 
 	const handleEditingToggle = React.useCallback(() => {
 		setIsEditingMode((prev) => !prev);
+
 		if (
 			exchangeRates !== null &&
 			id &&
 			typeof userUpdatedRate !== "undefined"
 		) {
-			const updatedRates: ExchangeRate[] = exchangeRates.map((exchangeRate) => {
-				if (exchangeRate.Id === id) {
-					exchangeRate.Rate = userUpdatedRate;
-				}
-				return exchangeRate;
-			});
+			const updatedArrayIndex = exchangeRates.ExchangeRates.findIndex(
+				(rateObj) => rateObj.Id === id
+			);
 
-			if (!isEditingMode) setExchangeRates(updatedRates);
+			const updatesExchangeRateResponse = { ...exchangeRates };
+			if (updatedArrayIndex !== -1 && typeof keyboardInput !== "undefined")
+				updatesExchangeRateResponse.ExchangeRates[updatedArrayIndex].Rate =
+					keyboardInput;
+
+			setExchangeRates(updatesExchangeRateResponse);
 		}
-	}, [exchangeRates, id, isEditingMode, setExchangeRates, userUpdatedRate]);
+	}, [exchangeRates, id, keyboardInput, setExchangeRates, userUpdatedRate]);
 
 	const handleOnChange = React.useCallback(
 		(event: NativeSyntheticEvent<TextInputChangeEventData>) => {
@@ -70,7 +73,7 @@ const EditableTextInput: React.FC<{ value: string; id: string }> = ({
 	);
 
 	const savedValue = React.useMemo(() => {
-		const currentExchangeObj = exchangeRates?.find((arr) => {
+		const currentExchangeObj = exchangeRates?.ExchangeRates.find((arr) => {
 			if (arr.Id === id) {
 				return arr;
 			}

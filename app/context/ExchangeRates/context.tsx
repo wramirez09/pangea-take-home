@@ -1,12 +1,18 @@
-import { ExchangeRate } from "@/app/views/ExchangeRates/types";
+import ExchangeRateResponse from "@/app/views/ExchangeRates/types";
 import * as React from "react";
 
 export const ExchangeRateContext = React.createContext<{
-	exchangeRates: ExchangeRate[] | null;
-	setExchangeRates: React.Dispatch<React.SetStateAction<ExchangeRate[] | null>>;
+	exchangeRates: ExchangeRateResponse | null;
+	setExchangeRates: React.Dispatch<
+		React.SetStateAction<ExchangeRateResponse | null>
+	>;
+	loading: boolean;
+	error: string | null;
 }>({
 	exchangeRates: null,
 	setExchangeRates: () => {},
+	loading: false,
+	error: null,
 });
 
 const useExchangeRates = () => {
