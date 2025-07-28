@@ -62,6 +62,10 @@ const DataRenderer: React.FC<{
 const ExchangeRates: React.FC<{
 	exchangeRateData: ExchangeRate[];
 }> = ({ exchangeRateData }) => {
+	// // lets remove the first entry in the rates array because id's are duplicated in the api response
+	// const updatedRatesArr = [...exchangeRateData];
+	// updatedRatesArr.shift();
+
 	return (
 		<>
 			<DataRenderer data={exchangeRateData} />

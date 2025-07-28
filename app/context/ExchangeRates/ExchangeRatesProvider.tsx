@@ -24,8 +24,10 @@ const ExchangeRatesProvider: React.FC<React.PropsWithChildren> = ({
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 
-				const data = await response.json();
-				setExchangeRates(data);
+				const data: ExchangeRateResponse = await response.json();
+				const cleanedData = { ...data };
+				cleanedData.ExchangeRates.shift(); // remove duplicate entry in response
+				setExchangeRates(cleanedData);
 			} catch (e) {
 				setError(
 					`An error occurred while fetching exchange rates. ${
@@ -37,7 +39,7 @@ const ExchangeRatesProvider: React.FC<React.PropsWithChildren> = ({
 			}
 		};
 		fetchExchangeRates();
-	});
+	}, []);
 
 	return (
 		<ExchangeRateContext.Provider

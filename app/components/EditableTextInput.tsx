@@ -9,6 +9,7 @@ import {
 import EditingToggle from "./EditingToggle";
 import { useDebounce } from "@uidotdev/usehooks";
 import useExchangeRates from "../context/ExchangeRates/context";
+import ExchangeRateResponse from "../views/ExchangeRates/types";
 
 const styles = StyleSheet.create({
 	textInput: {
@@ -53,12 +54,21 @@ const EditableTextInput: React.FC<{ value: string; id: string }> = ({
 				(rateObj) => rateObj.Id === id
 			);
 
-			const updatesExchangeRateResponse = { ...exchangeRates };
+			const updatesExchangeRateResponse: ExchangeRateResponse = {
+				...exchangeRates,
+			};
 			if (updatedArrayIndex !== -1 && typeof keyboardInput !== "undefined")
 				updatesExchangeRateResponse.ExchangeRates[updatedArrayIndex].Rate =
 					keyboardInput;
 
-			setExchangeRates(updatesExchangeRateResponse);
+			setKeyboardInput(
+				updatesExchangeRateResponse.ExchangeRates[updatedArrayIndex].Rate
+			);
+			setExchangeRates((prev) => {
+				return { ...prev, ...updatesExchangeRateResponse };
+			});
+
+			console.log({ exchangeRates });
 		}
 	}, [exchangeRates, id, keyboardInput, setExchangeRates, userUpdatedRate]);
 
@@ -71,26 +81,15 @@ const EditableTextInput: React.FC<{ value: string; id: string }> = ({
 		},
 		[setKeyboardInput]
 	);
-
-	const savedValue = React.useMemo(() => {
-		const currentExchangeObj = exchangeRates?.ExchangeRates.find((arr) => {
-			if (arr.Id === id) {
-				return arr;
-			}
-		});
-		return currentExchangeObj?.Rate;
-	}, [exchangeRates, id]);
-
 	return (
 		<View style={styles.container}>
 			<TextInput
 				style={styles.textInput}
-				defaultValue={savedValue}
 				editable={isEditingMode}
 				clearButtonMode={isEditingMode ? "always" : "never"}
 				onChange={handleOnChange}
 				keyboardType="numeric"
-				value={keyboardInput?.toString()}
+				value={keyboardInput ?? value}
 			/>
 			<EditingToggle setEditingMode={handleEditingToggle} />
 		</View>
